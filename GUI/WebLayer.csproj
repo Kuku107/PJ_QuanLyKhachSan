@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\ServiceLayer.csproj" />
+    <ProjectReference Include="..\DataTransferObject\DataTransferObject.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DatPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DichVuVaThanhToan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="QuanLyDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="QuanLyKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="QuanLyPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SuDungDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ThemDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ThemPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <Generator>SettingsSingleFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+</Project>
