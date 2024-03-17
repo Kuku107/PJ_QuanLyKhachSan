@@ -57,19 +57,26 @@ namespace QuanLyKhachSan
             }
         }
 
+        public static bool checkDichVu(DichVu dichVu)
+        {
+            if (dichVu.getTenDichVu() == "" || dichVu.getLoaiDichVu() == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
         private void bt_CapNhat_Click(object sender, EventArgs e)
         {
             DichVu dichVu = new DichVu(tb_MaDichVu.Text, tb_TenDichVu.Text, cb_LoaiDichVu.Text, int.Parse(tb_Gia.Text));
-            switch (dichVuBLL.updateDichvu(dichVu))
+            if (!checkDichVu(dichVu))
             {
-                case "khong du thong tin":
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin");
-                    return;
-                case "cap nhat thanh cong":
-                    MessageBox.Show("Cập nhật thành công");
-                    dgv_DanhSachDichVu.DataSource = dichVuBLL.getDanhSachDichVu();
-                    return;
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin dịch vụ");
+                return;
             }
+            dichVuBLL.updateDichvu(dichVu);
+            dgv_DanhSachDichVu.DataSource = dichVuBLL.getDanhSachDichVu();
+            MessageBox.Show("Cập nhật dịch vụ thành công");
         }
 
         private void bt_Xoa_Click(object sender, EventArgs e)

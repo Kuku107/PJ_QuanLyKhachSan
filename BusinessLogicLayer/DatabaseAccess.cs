@@ -27,27 +27,6 @@ namespace DataLayer
     }
     internal class DatabaseAccess
     {
-        public string checkLogin(TaiKhoan taikhoan)
-        {
-            using (SqlConnection connection = SqlConnectionData.connectToQuanLyTaiKhoan())
-            {
-                connection.Open();
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = 
-                    "SELECT * FROM tbl_taiKhoan WHERE sTaiKhoan = '" + taikhoan.sTaiKhoan 
-                        + "' AND sMatKhau = '" + taikhoan.sMatKhau + "'";
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        return reader.GetString(0);
-                    }
-                }
-                return "Khong tim thay tai khoan hoac mat khau";
-            }
-        }
-
         public DataTable getDataGridViewWithQuery(string query)
         {
             using (SqlConnection connection = SqlConnectionData.connectToQuanLyKhachSan())

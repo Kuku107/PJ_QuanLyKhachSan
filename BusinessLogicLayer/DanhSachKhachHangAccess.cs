@@ -25,7 +25,7 @@ namespace DataLayer
             return databaseAccess.getDataGridViewWithQuery(query);
         }
 
-        public string updateKhachHang(KhachHang khachHang)
+        public bool updateKhachHang(KhachHang khachHang)
         {
             string query = "UPDATE DanhSachKhachHang SET [Họ và tên] = N'" + khachHang.getHoVaTen() + 
                             "', CCCD = '" + khachHang.getCCCD() + "', [Loại khách hàng] = N'" + khachHang.getLoaiKhachHang() +
@@ -33,7 +33,7 @@ namespace DataLayer
                             "', [Giới tính] = N'" + khachHang.getGioiTinh() + "', [Địa chỉ] = N'" + khachHang.getDiaChi() + 
                             "', [Quốc tịch] = N'" + khachHang.getQuocTich() + "' WHERE [Mã khách] = '" + khachHang.getMaKhach() + "'";
             databaseAccess.executeQuery(query);
-            return "cap nhat thanh cong";
+            return true;
         }
 
         public int getSoLuongKhachHang()
@@ -42,7 +42,7 @@ namespace DataLayer
             return databaseAccess.getDataGridViewWithQuery(query).Rows.Count;
         }
 
-        public string addKhachHang(KhachHang khachHang)
+        public bool addKhachHang(KhachHang khachHang)
         {
             string query = "Select * from DanhSachKhachHang where [Họ và tên] = N'" + khachHang.getHoVaTen() + 
                             "' and [Số điện thoại] = N'" + khachHang.getSoDienThoai() + 
@@ -50,6 +50,8 @@ namespace DataLayer
                             "' and [Loại khách hàng] = N'" + khachHang.getLoaiKhachHang() + 
                             "' and [Giới tính] = N'" + khachHang.getGioiTinh() +
                             "' and [Quốc tịch] = N'" + khachHang.getQuocTich() + "'";
+
+            // khách hàng mới
             if (databaseAccess.getDataGridViewWithQuery(query).Rows.Count == 0)
             {
                 khachHang.setMaKhachHang("KH" + (getSoLuongKhachHang() + 1).ToString());
@@ -59,7 +61,7 @@ namespace DataLayer
                                 "', N'" + khachHang.getQuocTich() + "')";
                 databaseAccess.executeQuery(queryInsert);
             }
-            return "them thanh cong";
+            return true;
         }
     }
 }

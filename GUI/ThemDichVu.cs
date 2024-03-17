@@ -28,15 +28,14 @@ namespace QuanLyKhachSan
         private void bt_ThemDichVu_Click(object sender, EventArgs e)
         {
             DichVu dichVu = new DichVu("DV", tb_TenDichVu.Text, cb_LoaiDichVu.Text, int.Parse(tb_Gia.Text));
-            switch (dichVuBLL.addDichVu(dichVu))
+            if (!QuanLyDichVu.checkDichVu(dichVu))
             {
-                case "khong du thong tin":
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin dịch vụ");
-                    return;
-                case "them thanh cong":
-                    MessageBox.Show("Thêm dịch vụ thành công");
-                    return;
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin dịch vụ");
+                return;
             }
+            
+            dichVuBLL.addDichVu(dichVu);
+            MessageBox.Show("Thêm dịch vụ thành công");
         }
     }
 }

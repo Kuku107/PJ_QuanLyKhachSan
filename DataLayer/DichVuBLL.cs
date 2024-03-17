@@ -22,19 +22,10 @@ namespace ServiceLayer
         {
             return danhSachDichVuAccess.findDichVu(loaiDichVu);
         }
-        public bool checkDichVu(DichVu dichVu)
-        {
-            if (dichVu.getTenDichVu() == "" || dichVu.getLoaiDichVu() == "")
-            {
-                return false;
-            }
-            return true;
-        }
+        
 
-        public string updateDichvu(DichVu dichVu)
+        public bool updateDichvu(DichVu dichVu)
         {
-            if (checkDichVu(dichVu) == false)
-                return "khong du thong tin";
             return danhSachDichVuAccess.updateDichVu(dichVu);
         }
 
@@ -43,10 +34,8 @@ namespace ServiceLayer
             danhSachDichVuAccess.removeDichVu(maDichVu);
         }
 
-        public string addDichVu(DichVu dichVu)
+        public bool addDichVu(DichVu dichVu)
         {
-            if (checkDichVu(dichVu) == false)
-                return "khong du thong tin";
             return danhSachDichVuAccess.addDichVu(dichVu);
         }
     }

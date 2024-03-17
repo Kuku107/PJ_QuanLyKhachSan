@@ -51,20 +51,29 @@ namespace QuanLyKhachSan
             }
         }
 
+        public static bool checkKhachHang(KhachHang khachHang)
+        {
+            if (khachHang.getMaKhach() == "" || khachHang.getLoaiKhachHang() == "" || khachHang.getHoVaTen() == "" ||
+                khachHang.getSoDienThoai() == "" || khachHang.getQuocTich() == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
         private void bt_CapNhat_Click(object sender, EventArgs e)
         {
             KhachHang khachHang = new KhachHang(tb_MaKhach.Text, tb_HoVaTen.Text, tb_CCCD.Text, tb_SoDienThoai.Text, dtp_NgaySinh.Value, 
                                                 tb_DiaChi.Text, cb_LoaiKhachHang.Text, cb_GioiTinh.Text, cb_QuocTich.Text);
-            switch (khachHangBLL.updateKhachHang(khachHang))
+            if (!checkKhachHang(khachHang))
             {
-                case "khong du thong tin khach hang":
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin khách hàng");
-                    return;
-                case "cap nhat thanh cong":
-                    MessageBox.Show("Cập nhật thông tin khách hàng thành công");
-                    dgv_DanhSachKhachHang.DataSource = khachHangBLL.getDanhSachKhachHang();
-                    return;
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin khách hàng");
+                return;
             }
+
+            khachHangBLL.updateKhachHang(khachHang);
+            dgv_DanhSachKhachHang.DataSource = khachHangBLL.getDanhSachKhachHang();
+            MessageBox.Show("Cập nhật thông tin thành công");
         }
     }
 }

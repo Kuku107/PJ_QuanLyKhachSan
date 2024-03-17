@@ -25,11 +25,13 @@ namespace DataLayer
             return databaseAccess.getDataGridViewWithQuery(query);
         }
 
-        public string updateDichVu(DichVu dichVu)
+        public bool updateDichVu(DichVu dichVu)
         {
-            string query = "UPDATE DanhSachDichVu SET [Tên dịch vụ] = N'" + dichVu.getTenDichVu() + "', [Giá] = " + dichVu.getGia() + ", [Loại dịch vụ] = N'" + dichVu.getLoaiDichVu() + "' WHERE [Mã dịch vụ] = '" + dichVu.getMaDichVu() + "'";
+            string query = "UPDATE DanhSachDichVu SET [Tên dịch vụ] = N'" + dichVu.getTenDichVu() + "', [Giá] = " + 
+                            dichVu.getGia() + ", [Loại dịch vụ] = N'" + dichVu.getLoaiDichVu() + "' WHERE [Mã dịch vụ] = '" + 
+                            dichVu.getMaDichVu() + "'";
             databaseAccess.executeQuery(query);
-            return "cap nhat thanh cong";
+            return true;
         }
 
         public void removeDichVu(string maDichVu)
@@ -45,12 +47,13 @@ namespace DataLayer
             return table.Rows.Count;
         }
 
-        public string addDichVu(DichVu dichVu)
+        public bool addDichVu(DichVu dichVu)
         {
             dichVu.setMaDichVu("DV" + (getSoDichVu() + 1).ToString());
-            string query = "INSERT INTO DanhSachDichVu VALUES ('" + dichVu.getMaDichVu() + "', N'" + dichVu.getTenDichVu() + "', N'" + dichVu.getLoaiDichVu() + "', " + dichVu.getGia() + ")";
+            string query = "INSERT INTO DanhSachDichVu VALUES ('" + dichVu.getMaDichVu() + "', N'" + dichVu.getTenDichVu() + 
+                            "', N'" + dichVu.getLoaiDichVu() + "', " + dichVu.getGia() + ")";
             databaseAccess.executeQuery(query);
-            return "them thanh cong";
+            return true;
         }
     }
 }

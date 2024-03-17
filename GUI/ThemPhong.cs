@@ -31,18 +31,19 @@ namespace QuanLyKhachSan
         private void bt_ThemPhong_Click(object sender, EventArgs e)
         {
             Phong phong = new Phong(cb_LoaiPhong.Text, tb_TenPhong.Text, int.Parse(tb_GiaPhong.Text), Convert.ToInt32(nud_SoNguoiToiDa.Value));
-            switch (phongBLL.addPhong(phong))
+            if (!QuanLyPhong.checkPhong(phong))
             {
-                case "Khong du thong tin phong":
-                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin phòng");
-                    return;
-                case "Ten phong da ton tai":
-                    MessageBox.Show("Tên phòng đã tồn tại");
-                    return;
-                case "Them phong thanh cong":
-                    MessageBox.Show("Thêm phòng thành công");
-                    return;
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin phòng");
+                return;
             }
+
+            if (!phongBLL.addPhong(phong))
+            {
+                MessageBox.Show("Phòng đã tồn tại");
+                return;
+            }
+
+            MessageBox.Show("Thêm phòng thành công");
         }
 
     }

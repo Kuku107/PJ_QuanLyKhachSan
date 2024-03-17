@@ -23,29 +23,16 @@ namespace ServiceLayer
             return danhSachKhachHangAccess.findKhachHang(hoVaTen);
         }
 
-        public bool checkKhachHang(KhachHang khachHang)
+        public bool updateKhachHang(KhachHang khachHang)
         {
-            if (khachHang.getMaKhach() == "" || khachHang.getLoaiKhachHang() == "" || khachHang.getHoVaTen() == "" || khachHang.getSoDienThoai() == "" || khachHang.getQuocTich() == "")
-            {
-                return false;
-            }
-            return true;
+            return danhSachKhachHangAccess.updateKhachHang(khachHang);
+
         }
 
-        public string updateKhachHang(KhachHang khachHang)
+        public bool addKhachHang(KhachHang khachHang)
         {
-            if (checkKhachHang(khachHang) == false)
-                return "khong du thong tin khach hang";
-            string message = danhSachKhachHangAccess.updateKhachHang(khachHang);
-            return message;
-        }
+            return danhSachKhachHangAccess.addKhachHang(khachHang);
 
-        public string addKhachHang(KhachHang khachHang)
-        {
-            if (checkKhachHang(khachHang) == false)
-                return "khong du thong tin";
-            string message = danhSachKhachHangAccess.addKhachHang(khachHang);
-            return message;
         }
     }
 }

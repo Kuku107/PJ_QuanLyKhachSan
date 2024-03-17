@@ -49,13 +49,22 @@ namespace DataLayer
             return databaseAccess.getDataGridViewWithQuery(query);
         }
 
-        public string updatePhong(Phong phong)
+        public DataTable findPhongByTenAndLoaiPhong(string tenPhong, string loaiPhong)
         {
+            string query = "SELECT * FROM DanhSachPhong WHERE [Tên phòng] = N'" + tenPhong + "' and [Loại phòng] = N'" + 
+                            loaiPhong + "'";
+            return databaseAccess.getDataGridViewWithQuery(query);
+        }
+
+        public bool updatePhong(Phong phong)
+        {
+            if (findPhongByTenAndLoaiPhong(phong.getTenPhong(), phong.getLoaiPhong()).Rows.Count > 0)
+                return false;
             string query = "UPDATE DanhSachPhong SET [Tên phòng] = N'" + phong.getTenPhong() + "', [Loại phòng] = N'" + phong.getLoaiPhong()
                 + "', [Giá phòng] = " + phong.getGiaPhong() + ", [Trạng thái] = N'" + phong.getTrangThai() + "', [Số người tối đa] = " + phong.getSoNguoiToiDa()
                 + " WHERE [Mã phòng] = '" + phong.getMaPhong() + "'";
             databaseAccess.executeQuery(query);
-            return "Cap nhat thanh cong";
+            return true;
         }
 
         public int getSoPhong()
@@ -65,15 +74,15 @@ namespace DataLayer
             return table.Rows.Count;
         }
 
-        public string addPhong(Phong phong)
+        public bool addPhong(Phong phong)
         {
-            if (findPhongByTen(phong.getTenPhong()).Rows.Count > 0)
-                return "Ten phong da ton tai";
+            if (findPhongByTenAndLoaiPhong(phong.getTenPhong(), phong.getLoaiPhong()).Rows.Count > 0)
+                return false;
             phong.setMaPhong("P" + (getSoPhong() + 1).ToString());
             string query = "INSERT INTO DanhSachPhong VALUES ('" + phong.getMaPhong() + "', N'" + phong.getTenPhong() + "', N'" + phong.getLoaiPhong()
                 + "', " + phong.getGiaPhong() + ", N'" + phong.getTrangThai() + "', " + phong.getSoNguoiToiDa() + ")";
             databaseAccess.executeQuery(query);
-            return "Them phong thanh cong";
+            return true;
         }
 
         public void setTrangThaiPhong(string maPhong, string value)

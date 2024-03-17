@@ -56,6 +56,14 @@ namespace QuanLyKhachSan
 
         }
 
+        public static bool checkPhong(Phong phong)
+        {
+            if (phong.getMaPhong() == "" || phong.getTenPhong() == "" || phong.getLoaiPhong() == "" || phong.getTrangThai() == "" 
+                || phong.getSoNguoiToiDa() == 0)
+                return false;
+            return true;
+        }
+
         private void bt_CapNhat_Click(object sender, EventArgs e)
         {
             Phong phong = new Phong(tb_MaPhong.Text,
@@ -65,16 +73,21 @@ namespace QuanLyKhachSan
                                     cb_TrangThai.Text,
                                     Convert.ToInt32(nup_SoNguoiToiDa.Value)
                                     );
-            switch (phongBLL.updatePhong(phong))
+
+            if (!checkPhong(phong))
             {
-                case "Khong du thong tin phong":
-                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin phòng");
-                    return;
-                case "Cap nhat thanh cong":
-                    MessageBox.Show("Cập nhật thành công");
-                    dgv_DanhSachPhong.DataSource = phongBLL.getDanhSachPhong();
-                    return;
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                return;
             }
+
+            if (!phongBLL.updatePhong(phong))
+            {
+                MessageBox.Show("Phòng đã tồn tại");
+                return;
+            }
+
+            dgv_DanhSachPhong.DataSource = phongBLL.getDanhSachPhong();
+            MessageBox.Show("Cập nhật thành công");
         }
     }
 }

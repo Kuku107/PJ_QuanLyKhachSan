@@ -43,23 +43,14 @@ namespace ServiceLayer
             return dspAccess.findPhongByTen(tenPhong);
         }
 
-        public bool checkPhong(Phong phong)
+        
+        public bool updatePhong(Phong phong)
         {
-            if (phong.getMaPhong() == "" || phong.getTenPhong() == "" || phong.getLoaiPhong() == "" || phong.getTrangThai() == "" || phong.getSoNguoiToiDa() == 0)
-                return false;
-            return true;
-        }
-        public string updatePhong(Phong phong)
-        {
-            if (checkPhong(phong) == false)
-                return "Khong du thong tin phong";
             return dspAccess.updatePhong(phong);
         }
 
-        public string addPhong(Phong phong)
+        public bool addPhong(Phong phong)
         {
-            if (checkPhong(phong) == false)
-                return "Khong du thong tin phong";
             return dspAccess.addPhong(phong);
         }
 

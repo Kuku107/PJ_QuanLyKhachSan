@@ -10,15 +10,11 @@ namespace ServiceLayer
 {
     public class TaiKhoanBLL
     {
+        private TaiKhoanAccess tkAccess = new TaiKhoanAccess();
 
-        public string checkLogin(TaiKhoan taikhoan)
+        public bool login(TaiKhoan taikhoan)
         {
-            if (taikhoan.sTaiKhoan == "")
-                return "trong username";
-            if (taikhoan.sMatKhau == "")
-                return "trong password";
-            TaiKhoanAccess tkAccess = new TaiKhoanAccess();
-            return tkAccess.checkLogin(taikhoan);
-    }
+            return tkAccess.login(taikhoan);
+        }
     }
 }
