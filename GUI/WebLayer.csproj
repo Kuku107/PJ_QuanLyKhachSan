@@ -48,6 +48,9 @@
     <Compile Update="ThemDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ThemKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ThemPhong.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             groupBox1 = new GroupBox();
             bt_Tim = new Button();
             label1 = new Label();
@@ -56,6 +56,7 @@
             bt_CapNhat = new Button();
             groupBox2 = new GroupBox();
             dgv_DanhSachKhachHang = new DataGridView();
+            bt_Them = new Button();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -336,6 +337,7 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(bt_Them);
             groupBox4.Controls.Add(bt_CapNhat);
             groupBox4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox4.ForeColor = Color.Green;
@@ -350,10 +352,10 @@
             // 
             // bt_CapNhat
             // 
-            bt_CapNhat.Location = new Point(63, 60);
+            bt_CapNhat.Location = new Point(8, 56);
             bt_CapNhat.Margin = new Padding(4, 5, 4, 5);
             bt_CapNhat.Name = "bt_CapNhat";
-            bt_CapNhat.Size = new Size(220, 79);
+            bt_CapNhat.Size = new Size(173, 79);
             bt_CapNhat.TabIndex = 3;
             bt_CapNhat.Text = "Cập nhật";
             bt_CapNhat.UseVisualStyleBackColor = true;
@@ -380,14 +382,14 @@
             dgv_DanhSachKhachHang.AllowUserToDeleteRows = false;
             dgv_DanhSachKhachHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_DanhSachKhachHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.Green;
-            dataGridViewCellStyle2.SelectionBackColor = Color.SeaGreen;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgv_DanhSachKhachHang.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.Green;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SeaGreen;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgv_DanhSachKhachHang.DefaultCellStyle = dataGridViewCellStyle1;
             dgv_DanhSachKhachHang.Location = new Point(7, 28);
             dgv_DanhSachKhachHang.MultiSelect = false;
             dgv_DanhSachKhachHang.Name = "dgv_DanhSachKhachHang";
@@ -399,6 +401,17 @@
             dgv_DanhSachKhachHang.Size = new Size(790, 689);
             dgv_DanhSachKhachHang.TabIndex = 0;
             dgv_DanhSachKhachHang.CellClick += dgv_DanhSachKhachHang_CellClick;
+            // 
+            // bt_Them
+            // 
+            bt_Them.Location = new Point(214, 56);
+            bt_Them.Margin = new Padding(4, 5, 4, 5);
+            bt_Them.Name = "bt_Them";
+            bt_Them.Size = new Size(182, 79);
+            bt_Them.TabIndex = 4;
+            bt_Them.Text = "Thêm";
+            bt_Them.UseVisualStyleBackColor = true;
+            bt_Them.Click += bt_Them_Click;
             // 
             // QuanLyKhachHang
             // 
@@ -453,5 +466,6 @@
         private TextBox tb_MaKhach;
         private Label label2;
         private WebLayer.RJControls.RJDatePicker dtp_NgaySinh;
+        private Button bt_Them;
     }
 }

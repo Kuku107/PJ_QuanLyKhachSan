@@ -63,7 +63,7 @@ namespace QuanLyKhachSan
 
         private void bt_CapNhat_Click(object sender, EventArgs e)
         {
-            KhachHang khachHang = new KhachHang(tb_MaKhach.Text, tb_HoVaTen.Text, tb_CCCD.Text, tb_SoDienThoai.Text, dtp_NgaySinh.Value, 
+            KhachHang khachHang = new KhachHang(tb_MaKhach.Text, tb_HoVaTen.Text, tb_CCCD.Text, tb_SoDienThoai.Text, dtp_NgaySinh.Value,
                                                 tb_DiaChi.Text, cb_LoaiKhachHang.Text, cb_GioiTinh.Text, cb_QuocTich.Text);
             if (!checkKhachHang(khachHang))
             {
@@ -74,6 +74,16 @@ namespace QuanLyKhachSan
             khachHangBLL.updateKhachHang(khachHang);
             dgv_DanhSachKhachHang.DataSource = khachHangBLL.getDanhSachKhachHang();
             MessageBox.Show("Cập nhật thông tin thành công");
+        }
+
+        private void bt_Them_Click(object sender, EventArgs e)
+        {
+            ThemKhachHang themKhachHang = new ThemKhachHang();
+            var result = themKhachHang.ShowDialog();
+            if (result == DialogResult.Cancel)
+            {
+                dgv_DanhSachKhachHang.DataSource = khachHangBLL.getDanhSachKhachHang();
+            }
         }
     }
 }
